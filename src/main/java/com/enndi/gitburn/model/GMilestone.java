@@ -1,15 +1,17 @@
 /**
  * 
  */
-package com.enndi.git.statistics.git.model;
+package com.enndi.gitburn.model;
 
 import java.util.Date;
+
+import org.gitlab4j.api.models.Milestone;
 
 /**
  * @author gustavo
  *
  */
-public class Milestone {
+public class GMilestone {
 	private Date createdAt;
 	private String description;
 	private Date startDate;
@@ -17,9 +19,9 @@ public class Milestone {
 	private String state;
 	private String title;
 
-	public Milestone() {
+	public GMilestone() {
 	}
-	public Milestone(org.gitlab4j.api.models.Milestone milestone) {
+	public GMilestone(Milestone milestone) {
 		this.setCreatedAt(milestone.getCreatedAt());
 		this.setDescription(milestone.getDescription());
 		this.setStartDate(milestone.getStartDate());

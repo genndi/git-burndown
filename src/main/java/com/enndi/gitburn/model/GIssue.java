@@ -1,37 +1,54 @@
 /**
  * 
  */
-package com.enndi.git.statistics.git.model;
+package com.enndi.gitburn.model;
+
+import java.util.List;
+
+import org.gitlab4j.api.models.Issue;
+import org.gitlab4j.api.models.Milestone;
 
 /**
  * @author gustavo
  *
  */
-public class Issue {
+public class GIssue {
 
 	private String title;
 	private String description;
 	private String webUrl;
 	private String state;
-	private Milestone milestone;
+	private GMilestone milestone;
+	private List<String> tags;
 	
-	public Issue() {
+	public GIssue() {
 	}
 	
-	public Issue(org.gitlab4j.api.models.Issue issue, org.gitlab4j.api.models.Milestone milestone) {
+	public GIssue(Issue issue, Milestone milestone) {
 		this.setTitle(issue.getTitle());
 		this.setDescription(issue.getDescription());
 		this.setWebUrl(issue.getWebUrl());
 		this.setState(issue.getState().name());
-		this.setMilestone(new Milestone(milestone));
+		this.setTags(issue.getLabels());
+		if(milestone != null) {
+			this.setMilestone(new GMilestone(milestone));			
+		}
 	}
 	
 	
-	public Milestone getMilestone() {
+	public List<String> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
+
+	public GMilestone getMilestone() {
 		return milestone;
 	}
 
-	public void setMilestone(Milestone milestone) {
+	public void setMilestone(GMilestone milestone) {
 		this.milestone = milestone;
 	}
 

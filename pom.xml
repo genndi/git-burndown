@@ -9,10 +9,10 @@
 		<version>2.3.7.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.enndi.gitlab</groupId>
-	<artifactId>statistics</artifactId>
+	<groupId>com.enndi</groupId>
+	<artifactId>gitburn</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>statistics</name>
+	<name>gitburn</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
