@@ -3,6 +3,7 @@
  */
 package com.enndi.gitburn.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.gitlab4j.api.models.Issue;
@@ -19,7 +20,7 @@ public class GIssue {
 	private String webUrl;
 	private String state;
 	private GMilestone milestone;
-	private List<String> tags;
+	private List<String> tags = new ArrayList<>();
 	
 	public GIssue() {
 	}
@@ -34,7 +35,16 @@ public class GIssue {
 			this.setMilestone(new GMilestone(milestone));			
 		}
 	}
-	
+	public boolean hasVoting() {
+		boolean hasVoting = false;
+		for (String tag : this.getTags()) {
+			if(tag.matches("-?\\d+(\\.\\d+)?")) {
+				hasVoting = true;
+				break;
+			}
+		}
+		return hasVoting;
+	}
 	
 	public List<String> getTags() {
 		return tags;

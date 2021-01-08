@@ -12,19 +12,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.enndi.gitburn.model.GBurndown;
 import com.enndi.gitburn.model.GIssue;
 
 @Service
 public class GitLabService {
+
+	private Logger logger = LoggerFactory.getLogger(GitLabService.class);
 	
 	@Value("${gitburn.gitlab.hostUrl}")
 	private String hostUrl;
 	
 	@Value("${gitburn.gitlab.personalAccessToken}")
 	private String personalAccessToken;
-	
-
-    private Logger logger = LoggerFactory.getLogger(GitLabService.class);
 	
 	public List<GIssue> getIssues(Integer projectId, String milestone) {
 		List<GIssue> gIssues = null;
@@ -41,6 +41,12 @@ public class GitLabService {
 			gIssues = new ArrayList<>();
 		}
 		return gIssues;
+	}
+
+	public GBurndown generateBurndown(Integer projectId, String milestone) {
+		List<GIssue> issues = getIssues(projectId, milestone);
+		GBurndown gBurndown = new GBurndown(projectId, milestone, issues);
+		return gBurndown;
 	}
 
 }
